@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+  <title>Plan de Gobierno - Kruger Vidal</title>
+  <!-- SDK Oficial de Telegram Mini Apps -->
+  <script src="https://telegram.org/js/telegram-web-app.js"></script>
+  <!-- Tailwind CSS para diseño móvil acelerado -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    body { -webkit-tap-highlight-color: transparent; }
+    .modal { transition: opacity 0.2s ease, transform 0.2s ease; }
+    .modal-hidden { opacity: 0; pointer-events: none; transform: translateY(100%); }
+    .modal-visible { opacity: 1; pointer-events: auto; transform: translateY(0); }
+  </style>
+</head>
+<body class="bg-slate-900 text-slate-100 min-h-screen p-4 font-sans pb-10">
+
+  <!-- Header Principal -->
+  <div class="text-center my-4">
+    <span class="bg-purple-900 text-purple-200 text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wider">
+      Partido Morado • Chorrillos
+    </span>
+    <h1 class="text-2xl font-black mt-3 text-white tracking-tight">ING. KRUGER VIDAL</h1>
+    <p class="text-xs font-medium text-slate-400 mt-1">Alcaldía de Chorrillos 2027-2030</p>
+  </div>
+
+  <!-- Menú de 4 Botones Principales -->
+  <div class="space-y-3 max-w-md mx-auto mt-6">
+    
+    <button onclick="openModal('modal-plan')" class="w-full bg-slate-800 hover:bg-slate-700 border border-slate-700 p-4 rounded-2xl text-left flex items-center justify-between shadow-lg active:scale-98 transition-all">
+      <div class="flex items-center space-x-3">
+        <span class="text-2xl">📜</span>
+        <div>
+          <h2 class="font-bold text-white text-base">Plan de Gobierno</h2>
+          <p class="text-xs text-slate-400">Puntos clave por sectores y PDF completo</p>
+        </div>
+      </div>
+      <span class="text-slate-500 text-lg">❯</span>
+    </button>
+
+    <button onclick="openModal('modal-resumen')" class="w-full bg-slate-800 hover:bg-slate-700 border border-slate-700 p-4 rounded-2xl text-left flex items-center justify-between shadow-lg active:scale-98 transition-all">
+      <div class="flex items-center space-x-3">
+        <span class="text-2xl">⚡</span>
+        <div>
+          <h2 class="font-bold text-white text-base">Resumen del Plan</h2>
+          <p class="text-xs text-slate-400">Propuestas visuales y volante digital</p>
+        </div>
+      </div>
+      <span class="text-slate-500 text-lg">❯</span>
+    </button>
+
+    <button onclick="openModal('modal-kruger')" class="w-full bg-slate-800 hover:bg-slate-700 border border-slate-700 p-4 rounded-2xl text-left flex items-center justify-between shadow-lg active:scale-98 transition-all">
+      <div class="flex items-center space-x-3">
+        <span class="text-2xl">👤</span>
+        <div>
+          <h2 class="font-bold text-white text-base">¿Quién es Kruger Vidal?</h2>
+          <p class="text-xs text-slate-400">Perfil, trayectoria y Hoja de Vida</p>
+        </div>
+      </div>
+      <span class="text-slate-500 text-lg">❯</span>
+    </button>
+
+    <button onclick="openModal('modal-pregunta')" class="w-full bg-purple-700 hover:bg-purple-600 border border-purple-500 p-4 rounded-2xl text-left flex items-center justify-between shadow-xl active:scale-98 transition-all">
+      <div class="flex items-center space-x-3">
+        <span class="text-2xl">🎙️</span>
+        <div>
+          <h2 class="font-bold text-white text-base">Pregúntale a tu Candidato</h2>
+          <p class="text-xs text-purple-200">Envía tus dudas para el próximo Stream</p>
+        </div>
+      </div>
+      <span class="text-purple-200 text-lg">❯</span>
+    </button>
+
+  </div>
+
+  <!-- Footer con Cierre -->
+  <div class="mt-8 text-center max-w-md mx-auto">
+    <button onclick="Telegram.WebApp.close()" class="w-full bg-slate-800 text-slate-400 font-semibold text-xs py-3 rounded-xl border border-slate-700 active:bg-slate-700">
+      Cerrar Ventana
+    </button>
+  </div>
+
+  <!-- ==================== MODAL 1: PLAN DE GOBIERNO ==================== -->
+  <div id="modal-plan" class="modal modal-hidden fixed inset-0 bg-slate-950 z-50 p-4 overflow-y-auto">
+    <div class="max-w-md mx-auto pb-10">
+      <div class="flex justify-between items-center mb-6">
+        <h2 class="text-xl font-black text-white">📜 Plan de Gobierno</h2>
+        <button onclick="closeModal('modal-plan')" class="text-slate-400 text-2xl font-bold p-2">✕</button>
+      </div>
+
+      <div class="space-y-4 text-sm text-slate-300">
+        <div class="bg-slate-900 border border-slate-800 p-4 rounded-xl">
+          <h3 class="font-bold text-purple-400 mb-2">🛡️ Chorrillos Seguro</h3>
+          <ul class="list-disc pl-4 space-y-1 text-xs text-slate-300">
+            <li>Serenazgo Comunitario + Patrullaje integrado con Policía TERNA.</li>
+            <li>Monitoreo satelital 100% conectado al SIPCOP-M del MININTER.</li>
+            <li>Detección de rostros, placas y mapas de calor para prevenir asaltos.</li>
+          </ul>
+        </div>
+
+        <div class="bg-slate-900 border border-slate-800 p-4 rounded-xl">
+          <h3 class="font-bold text-purple-400 mb-2">📱 Chorrillos Digital</h3>
+          <ul class="list-disc pl-4 space-y-1 text-xs text-slate-300">
+            <li><b>OlayApp:</b> Puntos cívicos por arbitrios canjeables en comercios.</li>
+            <li>Ventanilla Única Virtual con trazabilidad de trámites en tiempo real.</li>
+            <li>Red CODEMES para fiscalización escolar y entornos seguros.</li>
+          </ul>
+        </div>
+
+        <div class="bg-slate-900 border border-slate-800 p-4 rounded-xl">
+          <h3 class="font-bold text-purple-400 mb-2">🌱 Salud y Medio Ambiente</h3>
+          <ul class="list-disc pl-4 space-y-1 text-xs text-slate-300">
+            <li>Red "Ollas de Hierro" para erradicar la anemia infantil.</li>
+            <li>Patitas Chorrillanas: Consultorio Veterinario Municipal y Albergue.</li>
+            <li>Parque Urbano San Genaro en el terreno del antiguo estadio abandonado.</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Descarga de Fuente Oficial -->
+      <div class="mt-6">
+        <a href="https://t.me/TuCanalOficial" target="_blank" class="block w-full bg-purple-700 hover:bg-purple-600 text-white text-center font-bold text-xs py-3 rounded-xl shadow">
+          📥 Descargar Plan de Gobierno Completo (PDF)
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <!-- ==================== MODAL 2: RESUMEN DE PLAN ==================== -->
+  <div id="modal-resumen" class="modal modal-hidden fixed inset-0 bg-slate-950 z-50 p-4 overflow-y-auto">
+    <div class="max-w-md mx-auto pb-10">
+      <div class="flex justify-between items-center mb-6">
+        <h2 class="text-xl font-black text-white">⚡ Resumen Rápido</h2>
+        <button onclick="closeModal('modal-resumen')" class="text-slate-400 text-2xl font-bold p-2">✕</button>
+      </div>
+
+      <div class="space-y-3">
+        <div class="bg-purple-950/50 border border-purple-800 p-4 rounded-xl text-center">
+          <p class="text-xs text-purple-300 font-semibold uppercase">Meta Principal</p>
+          <p class="text-lg font-black text-white mt-1">Delincuente Atrapado en &lt;24 Horas</p>
+          <p class="text-xs text-slate-400 mt-1">Con 99.8% de detección de falsas alarmas.</p>
+        </div>
+
+        <div class="bg-slate-900 border border-slate-800 p-4 rounded-xl space-y-2">
+          <h3 class="font-bold text-slate-200 text-xs uppercase tracking-wider">Iniciativas Clave:</h3>
+          <div class="text-xs text-slate-300 space-y-1.5">
+            <p>🐾 <b>Patitas Chorrillanas:</b> Atenciones veterinarias gratuitas y esterilizaciones.</p>
+            <p>💼 <b>Chorrillos Trabaja:</b> Bolsa laboral municipal y capacitaciones gratuitas.</p>
+            <p>♻️ <b>Chorrillos Verde:</b> Planta de compostaje y erradicación de puntos de basura.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="mt-6">
+        <a href="https://t.me/TuCanalOficial" target="_blank" class="block w-full bg-purple-700 hover:bg-purple-600 text-white text-center font-bold text-xs py-3 rounded-xl shadow">
+          📥 Descargar Volante Resumen Oficial (PDF)
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <!-- ==================== MODAL 3: QUIÉN ES KRUGER VIDAL ==================== -->
+  <div id="modal-kruger" class="modal modal-hidden fixed inset-0 bg-slate-950 z-50 p-4 overflow-y-auto">
+    <div class="max-w-md mx-auto pb-10">
+      <div class="flex justify-between items-center mb-6">
+        <h2 class="text-xl font-black text-white">👤 Perfil del Candidato</h2>
+        <button closeModal('modal-kruger')" class="text-slate-400 text-2xl font-bold p-2" onclick="closeModal('modal-kruger')">✕</button>
+      </div>
+
+      <div class="bg-slate-900 border border-slate-800 p-4 rounded-xl space-y-3 text-xs text-slate-300 leading-relaxed">
+        <p><b class="text-white">Ingeniero Industrial Colegiado (CIP)</b>, MBA y Máster en Project Management. Especialista en Tecnologías de la Información, Telecomunicaciones y Transformación Digital.</p>
+        <p>Más de 15 años de experiencia en el sector público y privado liderando proyectos de modernización (PRONIS, ANIN, Municipalidad de Lima).</p>
+        <p><b class="text-purple-400">Liderazgo Institucional:</b> Presidente del Comité de Gobierno y Transformación Digital del Colegio de Ingenieros del Perú (Filial Lima).</p>
+      </div>
+
+      <div class="mt-6">
+        <a href="https://t.me/TuCanalOficial" target="_blank" class="block w-full bg-purple-700 hover:bg-purple-600 text-white text-center font-bold text-xs py-3 rounded-xl shadow">
+          📄 Ver Hoja de Vida Oficial JNE (PDF)
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <!-- ==================== MODAL 4: PREGÚNTALE A TU CANDIDATO ==================== -->
+  <div id="modal-pregunta" class="modal modal-hidden fixed inset-0 bg-slate-950 z-50 p-4 overflow-y-auto">
+    <div class="max-w-md mx-auto pb-10">
+      <div class="flex justify-between items-center mb-4">
+        <h2 class="text-xl font-black text-white">🎙️ Deja tu Pregunta</h2>
+        <button onclick="closeModal('modal-pregunta')" class="text-slate-400 text-2xl font-bold p-2">✕</button>
+      </div>
+
+      <!-- Card de Información de Stream -->
+      <div class="bg-purple-900/40 border border-purple-700 p-3 rounded-xl text-center mb-4">
+        <p class="text-xs text-purple-300 font-semibold">🔴 Próxima Transmisión en Vivo</p>
+        <p class="text-sm font-bold text-white mt-0.5">Jueves • 8:00 PM</p>
+        <p class="text-[10px] text-purple-200 mt-1">Kruger responderá las preguntas recibidas en vivo por este canal.</p>
+      </div>
+
+      <!-- Formulario para n8n Webhook -->
+      <form id="question-form" onsubmit="sendQuestion(event)" class="space-y-3">
+        <div>
+          <label class="block text-xs font-semibold text-slate-400 mb-1">Tu Nombre / Sector de Chorrillos:</label>
+          <input type="text" id="user-sector" required placeholder="Ej. Carlos - San Genaro" class="w-full bg-slate-900 border border-slate-700 rounded-xl p-3 text-xs text-white focus:outline-none focus:border-purple-500">
+        </div>
+
+        <div>
+          <label class="block text-xs font-semibold text-slate-400 mb-1">Tu Pregunta o Propuesta:</label>
+          <textarea id="user-question" required rows="4" placeholder="¿Qué medidas tomarás para...?" class="w-full bg-slate-900 border border-slate-700 rounded-xl p-3 text-xs text-white focus:outline-none focus:border-purple-500"></textarea>
+        </div>
+
+        <button type="submit" id="submit-btn" class="w-full bg-purple-700 hover:bg-purple-600 text-white font-bold text-xs py-3 rounded-xl shadow active:scale-98 transition-transform">
+          Enviar Pregunta a Kruger
+        </button>
+      </form>
+
+      <p id="status-message" class="text-center text-xs text-emerald-400 mt-3 hidden">
+        ¡Pregunta enviada con éxito! La procesaremos para el próximo Stream.
+      </p>
+    </div>
+  </div>
+
+  <!-- Lógica JavaScript -->
+  <script>
+    Telegram.WebApp.ready();
+    Telegram.WebApp.expand();
+
+    function openModal(id) {
+      document.getElementById(id).classList.remove('modal-hidden');
+      document.getElementById(id).classList.add('modal-visible');
+    }
+
+    function closeModal(id) {
+      document.getElementById(id).classList.remove('modal-visible');
+      document.getElementById(id).classList.add('modal-hidden');
+    }
+
+    async function sendQuestion(event) {
+      event.preventDefault();
+      const btn = document.getElementById('submit-btn');
+      const status = document.getElementById('status-message');
+      
+      const sector = document.getElementById('user-sector').value;
+      const question = document.getElementById('user-question').value;
+      const user = Telegram.WebApp.initDataUnsafe?.user || {};
+
+      btn.disabled = true;
+      btn.innerText = "Enviando...";
+
+      // Reemplaza esta URL con el Webhook de tu n8n cuando esté listo
+      const WEBHOOK_URL = "https://tu-servidor-n8n.com/webhook/preguntas";
+
+      try {
+        await fetch(WEBHOOK_URL, {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+            telegram_id: user.id || "desconocido",
+            first_name: user.first_name || "",
+            sector: sector,
+            question: question,
+            timestamp: new Date().toISOString()
+          })
+        });
+      } catch (e) {
+        console.log("Simulación de envío (n8n no conectado aún)");
+      }
+
+      btn.innerText = "Pregunta Enviada";
+      status.classList.remove('hidden');
+      setTimeout(() => { closeModal('modal-pregunta'); }, 2000);
+    }
+  </script>
+</body>
+</html>
