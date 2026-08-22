@@ -271,11 +271,15 @@
       </div>
 
       <!-- Card de Información de Stream -->
-      <div class="bg-purple-900/40 border border-purple-700 p-3 rounded-xl text-center mb-4">
-        <p class="text-xs text-purple-300 font-semibold">🔴 Próxima Transmisión en Vivo</p>
-        <p id="stream-fecha" class="text-sm font-bold text-white mt-0.5">Jueves • 8:00 PM</p>
-        <p id="stream-tema" class="text-[10px] text-purple-200 mt-1">Kruger responderá las preguntas recibidas en vivo por este canal.</p>
-      </div>
+	<div class="bg-purple-900/40 border border-purple-700 p-3 rounded-xl text-center mb-4">
+	  <p class="text-xs text-purple-300 font-semibold">🔴 Próxima Transmisión en Vivo</p>
+	  
+	  <!-- Aquí se inyectará la fecha dinámicamente -->
+	  <p id="stream-fecha" class="text-sm font-bold text-white mt-0.5">Cargando fecha...</p>
+	  
+	  <!-- Aquí se inyectará el tema dinámicamente -->
+	  <p id="stream-tema" class="text-[10px] text-purple-200 mt-1">Kruger responderá las preguntas recibidas en vivo.</p>
+	</div>
 
       <!-- Formulario para n8n Webhook -->
       <form id="question-form" onsubmit="sendQuestion(event)" class="space-y-3">
@@ -304,6 +308,26 @@
   <script>
     Telegram.WebApp.ready();
     Telegram.WebApp.expand();
+
+	async function loadStreamInfo() {
+	  try {
+	    // Agregamos un timestamp (?t=...) para evitar que el navegador guarde el JSON en caché
+	    const response = await fetch('https://lctrabajo-source.github.io/stream.json?t=' + new Date().getTime());
+	    if (response.ok) {
+	      const data = await response.json();
+	      if (data.proximo_stream) {
+	        document.getElementById('stream-fecha').innerText = data.proximo_stream;
+	      }
+	      if (data.tema) {
+	        document.getElementById('stream-tema').innerText = data.tema;
+	      }
+	    }
+	  } catch (error) {
+	    console.log("No se pudo cargar stream.json, usando valores predeterminados.");
+	  }
+	}
+
+	loadStreamInfo();
 
     // Carga dinámica de la fecha del stream desde stream.json
     fetch('https://lctrabajo-source.github.io/stream.json')
