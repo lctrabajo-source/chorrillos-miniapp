@@ -83,40 +83,78 @@
   </div>
 
   <!-- ==================== MODAL 1: PLAN DE GOBIERNO ==================== -->
-  <div id="modal-plan" class="modal modal-hidden fixed inset-0 bg-slate-950 z-50 p-4 overflow-y-auto">
-    <div class="max-w-md mx-auto pb-10">
-      <div class="flex justify-between items-center mb-6">
+<div id="modal-plan" class="modal modal-hidden fixed inset-0 bg-slate-950 z-50 p-4 overflow-y-auto">
+  <div class="max-w-md mx-auto pb-10">
+    <!-- Cabecera -->
+    <div class="flex justify-between items-center mb-4">
+      <div>
         <h2 class="text-xl font-black text-white">📜 Plan de Gobierno</h2>
-        <button onclick="closeModal('modal-plan')" class="text-slate-400 text-2xl font-bold p-2">✕</button>
+        <p class="text-[11px] text-purple-300 font-medium">Gestión Municipal 2027–2030</p>
       </div>
+      <button onclick="closeModal('modal-plan')" class="text-slate-400 text-2xl font-bold p-2 hover:text-white">✕</button>
+    </div>
 
-      <div class="space-y-2.5 mb-6">
-        <p class="text-xs font-bold text-slate-400 uppercase tracking-wider">Lectura rápida por Ejes (Telegraph ⚡):</p>
-        
-        <button onclick="openExternalLink('https://telegra.ph/Chorrillos-Seguro-2027-2030-08-22')" class="w-full bg-slate-900 hover:bg-slate-800 border border-slate-700 p-3 rounded-xl text-left flex justify-between items-center transition-colors">
-          <span class="text-xs font-semibold text-slate-200">🛡️ Eje 1: Chorrillos Seguro</span>
-          <span class="text-xs text-purple-400 font-bold">Leer ⚡</span>
-        </button>
-
-        <button onclick="openExternalLink('https://telegra.ph/Chorrillos-Digital-y-OlayApp-08-22')" class="w-full bg-slate-900 hover:bg-slate-800 border border-slate-700 p-3 rounded-xl text-left flex justify-between items-center transition-colors">
-          <span class="text-xs font-semibold text-slate-200">📱 Eje 2: Chorrillos Digital y OlayApp</span>
-          <span class="text-xs text-purple-400 font-bold">Leer ⚡</span>
-        </button>
-
-        <button onclick="openExternalLink('https://telegra.ph/Salud-Medio-Ambiente-y-Bienestar-Animal-08-22')" class="w-full bg-slate-900 hover:bg-slate-800 border border-slate-700 p-3 rounded-xl text-left flex justify-between items-center transition-colors">
-          <span class="text-xs font-semibold text-slate-200">🐾 Eje 3: Salud, Medio Ambiente y Bienestar Animal</span>
-          <span class="text-xs text-purple-400 font-bold">Leer ⚡</span>
-        </button>
+    <!-- Tarjeta de Resumen Informativo -->
+    <div class="bg-gradient-to-br from-purple-900/60 to-slate-900 border border-purple-700/50 p-4 rounded-2xl mb-5 shadow-lg">
+      <div class="flex items-center space-x-2 mb-2">
+        <span class="text-xs bg-purple-800 text-purple-200 font-bold px-2 py-0.5 rounded-md uppercase">3 Ejes Estratégicos</span>
+        <span class="text-xs text-slate-400">Documento Oficial JNE</span>
       </div>
-        
-      <!-- Descarga de Fuente Oficial -->
-      <div class="mt-6">
-        <button onclick="openExternalLink('https://lctrabajo-source.github.io/PLAN_DE_GOBIERNO_2027-2030.pdf')" class="w-full bg-purple-700 hover:bg-purple-600 text-white font-bold text-xs py-3 rounded-xl shadow">
-          📥 Descargar Plan de Gobierno Completo (PDF)
-        </button>
-      </div>
+      <p class="text-xs text-slate-200 leading-relaxed">
+        Estrategia integral orientada a la seguridad ciudadana con inteligencia artificial, modernización digital, salud comunitaria y recuperación de áreas verdes en Chorrillos.
+      </p>
+    </div>
+
+    <!-- Lista de Ejes con Descripción Breve (Telegraph) -->
+    <div class="space-y-3 mb-6">
+      <p class="text-[11px] font-bold text-slate-400 uppercase tracking-wider">Lectura rápida por Ejes (Telegraph ⚡):</p>
+      
+      <!-- Eje 1 -->
+      <button onclick="openExternalLink('https://telegra.ph/Chorrillos-Seguro-2027-2030-08-22')" class="w-full bg-slate-900 hover:bg-slate-800 border border-slate-800 hover:border-purple-600/50 p-3.5 rounded-2xl text-left flex items-center justify-between transition-all group">
+        <div class="flex items-start space-x-3">
+          <span class="text-xl mt-0.5">🛡️</span>
+          <div>
+            <h3 class="text-xs font-bold text-slate-100 group-hover:text-purple-300 transition-colors">Eje 1: Chorrillos Seguro</h3>
+            <p class="text-[10px] text-slate-400 mt-0.5">Serenazgo + TERNA, IA en cámaras y mapa de calor delictivo.</p>
+          </div>
+        </div>
+        <span class="text-xs text-purple-400 font-bold bg-purple-950/80 px-2.5 py-1 rounded-lg border border-purple-800/40 ml-2 whitespace-nowrap">Leer ⚡</span>
+      </button>
+
+      <!-- Eje 2 -->
+      <button onclick="openExternalLink('https://telegra.ph/Chorrillos-Digital-y-OlayApp-08-22')" class="w-full bg-slate-900 hover:bg-slate-800 border border-slate-800 hover:border-purple-600/50 p-3.5 rounded-2xl text-left flex items-center justify-between transition-all group">
+        <div class="flex items-start space-x-3">
+          <span class="text-xl mt-0.5">📱</span>
+          <div>
+            <h3 class="text-xs font-bold text-slate-100 group-hover:text-purple-300 transition-colors">Eje 2: Chorrillos Digital & OlayApp</h3>
+            <p class="text-[10px] text-slate-400 mt-0.5">Trámites sin colas, puntos cívicos y ventanilla única virtual.</p>
+          </div>
+        </div>
+        <span class="text-xs text-purple-400 font-bold bg-purple-950/80 px-2.5 py-1 rounded-lg border border-purple-800/40 ml-2 whitespace-nowrap">Leer ⚡</span>
+      </button>
+
+      <!-- Eje 3 -->
+      <button onclick="openExternalLink('https://telegra.ph/Salud-Medio-Ambiente-y-Bienestar-Animal-08-22')" class="w-full bg-slate-900 hover:bg-slate-800 border border-slate-800 hover:border-purple-600/50 p-3.5 rounded-2xl text-left flex items-center justify-between transition-all group">
+        <div class="flex items-start space-x-3">
+          <span class="text-xl mt-0.5">🐾</span>
+          <div>
+            <h3 class="text-xs font-bold text-slate-100 group-hover:text-purple-300 transition-colors">Eje 3: Salud & Patitas Chorrillanas</h3>
+            <p class="text-[10px] text-slate-400 mt-0.5">Clínica veterinaria municipal, reciclaje y áreas verdes.</p>
+          </div>
+        </div>
+        <span class="text-xs text-purple-400 font-bold bg-purple-950/80 px-2.5 py-1 rounded-lg border border-purple-800/40 ml-2 whitespace-nowrap">Leer ⚡</span>
+      </button>
+    </div>
+
+    <!-- Descarga de Fuente Oficial -->
+    <div class="pt-3 border-t border-slate-800">
+      <button onclick="openExternalLink('https://lctrabajo-source.github.io/PLAN_DE_GOBIERNO_2027-2030.pdf')" class="w-full bg-purple-700 hover:bg-purple-600 text-white font-bold text-xs py-3.5 rounded-xl shadow-lg active:scale-98 transition-all flex items-center justify-center space-x-2">
+        <span>📥</span>
+        <span>Descargar Plan de Gobierno Completo (PDF)</span>
+      </button>
     </div>
   </div>
+</div>
 
   <!-- ==================== MODAL 2: RESUMEN DE PLAN ==================== -->
   <div id="modal-resumen" class="modal modal-hidden fixed inset-0 bg-slate-950 z-50 p-4 overflow-y-auto">
@@ -163,27 +201,66 @@
   </div>
 
   <!-- ==================== MODAL 3: QUIÉN ES KRUGER VIDAL ==================== -->
-  <div id="modal-kruger" class="modal modal-hidden fixed inset-0 bg-slate-950 z-50 p-4 overflow-y-auto">
-    <div class="max-w-md mx-auto pb-10">
-      <div class="flex justify-between items-center mb-6">
+<div id="modal-kruger" class="modal modal-hidden fixed inset-0 bg-slate-950 z-50 p-4 overflow-y-auto">
+  <div class="max-w-md mx-auto pb-10">
+    <!-- Cabecera -->
+    <div class="flex justify-between items-center mb-4">
+      <div>
         <h2 class="text-xl font-black text-white">👤 Perfil del Candidato</h2>
-        <button onclick="closeModal('modal-kruger')" class="text-slate-400 text-2xl font-bold p-2">✕</button>
+        <p class="text-[11px] text-purple-300 font-medium">Conoce a Kruger Vidal</p>
       </div>
+      <button onclick="closeModal('modal-kruger')" class="text-slate-400 text-2xl font-bold p-2 hover:text-white">✕</button>
+    </div>
 
-      <div class="mb-4">
-        <button onclick="openExternalLink('https://telegra.ph/Qui%C3%A9n-es-el-Ing-Kruger-Vidal-08-22')" class="w-full bg-slate-900 hover:bg-slate-800 border border-purple-800/60 p-3 rounded-xl text-left flex justify-between items-center">
-          <span class="text-xs font-semibold text-purple-300">📖 Leer biografía y trayectoria detallada</span>
-          <span class="text-xs text-purple-400 font-bold">Ver ⚡</span>
-        </button>
+    <!-- Tarjeta de Presentación / Ficha Técnica -->
+    <div class="bg-gradient-to-br from-purple-900/60 to-slate-900 border border-purple-700/50 p-4 rounded-2xl mb-5 shadow-lg space-y-3">
+      <div class="flex items-center space-x-2">
+        <span class="text-xs bg-purple-800 text-purple-200 font-bold px-2 py-0.5 rounded-md uppercase">Ingeniero & Líder</span>
+        <span class="text-xs text-slate-400">+15 años de experiencia</span>
       </div>
+      
+      <p class="text-xs text-slate-200 leading-relaxed">
+        Especialista en proyectos de infraestructura, tecnología y gestión pública. Lideró iniciativas estratégicas en instituciones como PRONIS, MML, ANIN y el Colegio de Ingenieros del Perú.
+      </p>
 
-      <div class="mt-6">
-        <button onclick="openExternalLink('https://lctrabajo-source.github.io/KRUGER_VIDAL.pdf')" class="w-full bg-purple-700 hover:bg-purple-600 text-white font-bold text-xs py-3 rounded-xl shadow">
-          📄 Ver Hoja de Vida Oficial JNE (PDF)
-        </button>
+      <!-- Mini Badges de Credenciales -->
+      <div class="grid grid-cols-2 gap-2 pt-1 border-t border-purple-800/40">
+        <div class="bg-slate-900/80 p-2 rounded-xl border border-slate-800 text-center">
+          <p class="text-[10px] text-slate-400 uppercase font-semibold">Formación</p>
+          <p class="text-xs font-bold text-purple-300">Ing. Industrial & MBA</p>
+        </div>
+        <div class="bg-slate-900/80 p-2 rounded-xl border border-slate-800 text-center">
+          <p class="text-[10px] text-slate-400 uppercase font-semibold">Especialidad</p>
+          <p class="text-xs font-bold text-purple-300">Project Management</p>
+        </div>
       </div>
     </div>
+
+    <!-- Botón hacia Telegraph del Perfil -->
+    <div class="mb-6 space-y-2">
+      <p class="text-[11px] font-bold text-slate-400 uppercase tracking-wider">Lectura detallada (Telegraph ⚡):</p>
+
+      <button onclick="openExternalLink('https://telegra.ph/Qui%C3%A9n-es-el-Ing-Kruger-Vidal-08-22')" class="w-full bg-slate-900 hover:bg-slate-800 border border-slate-800 hover:border-purple-600/50 p-3.5 rounded-2xl text-left flex items-center justify-between transition-all group">
+        <div class="flex items-start space-x-3">
+          <span class="text-xl mt-0.5">📖</span>
+          <div>
+            <h3 class="text-xs font-bold text-slate-100 group-hover:text-purple-300 transition-colors">Biografía y Trayectoria Completa</h3>
+            <p class="text-[10px] text-slate-400 mt-0.5">Conoce sus títulos, logros profesionales y visión para Chorrillos.</p>
+          </div>
+        </div>
+        <span class="text-xs text-purple-400 font-bold bg-purple-950/80 px-2.5 py-1 rounded-lg border border-purple-800/40 ml-2 whitespace-nowrap">Ver ⚡</span>
+      </button>
+    </div>
+
+    <!-- Descarga de Fuente Oficial -->
+    <div class="pt-3 border-t border-slate-800">
+      <button onclick="openExternalLink('https://lctrabajo-source.github.io/KRUGER_VIDAL.pdf')" class="w-full bg-purple-700 hover:bg-purple-600 text-white font-bold text-xs py-3.5 rounded-xl shadow-lg active:scale-98 transition-all flex items-center justify-center space-x-2">
+        <span>📄</span>
+        <span>Ver Hoja de Vida Oficial JNE (PDF)</span>
+      </button>
+    </div>
   </div>
+</div>
 
   <!-- ==================== MODAL 4: PREGÚNTALE A TU CANDIDATO ==================== -->
   <div id="modal-pregunta" class="modal modal-hidden fixed inset-0 bg-slate-950 z-50 p-4 overflow-y-auto">
@@ -204,12 +281,12 @@
       <form id="question-form" onsubmit="sendQuestion(event)" class="space-y-3">
         <div>
           <label class="block text-xs font-semibold text-slate-400 mb-1">Tu Nombre / Sector de Chorrillos:</label>
-          <input type="text" id="user-sector" required placeholder="Ej. Carlos - San Genaro" class="w-full bg-slate-900 border border-slate-700 rounded-xl p-3 text-xs text-white focus:outline-none focus:border-purple-500">
+          <input type="text" id="user-sector" maxlength="100" placeholder="Ej. Carlos - San Genaro" class="w-full bg-slate-900 border border-slate-700 rounded-xl p-3 text-xs text-white focus:outline-none focus:border-purple-500">
         </div>
 
         <div>
           <label class="block text-xs font-semibold text-slate-400 mb-1">Tu Pregunta o Propuesta:</label>
-          <textarea id="user-question" required rows="4" placeholder="¿Qué medidas tomarás para...?" class="w-full bg-slate-900 border border-slate-700 rounded-xl p-3 text-xs text-white focus:outline-none focus:border-purple-500"></textarea>
+          <textarea id="user-question" maxlength="500" rows="4" placeholder="¿Qué medidas tomarás para...?" class="w-full bg-slate-900 border border-slate-700 rounded-xl p-3 text-xs text-white focus:outline-none focus:border-purple-500"></textarea>
         </div>
 
         <button type="submit" id="submit-btn" class="w-full bg-purple-700 hover:bg-purple-600 text-white font-bold text-xs py-3 rounded-xl shadow active:scale-98 transition-transform">
@@ -239,32 +316,32 @@
 
     // Función unificada para abrir links de Telegraph y PDFs fuera del WebView
     function openExternalLink(url) {
-  // Aseguramos que la WebApp esté lista
-  if (window.Telegram && window.Telegram.WebApp) {
-    
-    // Si es un enlace de Telegraph o de Telegram
-    if (url.includes('telegra.ph') || url.includes('t.me')) {
-      // Intenta abrirlo mediante Instant View / Vista Instantánea de Telegram
-      try {
-        Telegram.WebApp.openLink(url, { try_instant_view: true });
-      } catch (e) {
-        // Fallback si la versión de Telegram es antigua
-        window.open(url, '_blank');
-      }
-    } else {
-      // Para PDFs y enlaces externos generales (GitHub Pages)
-      try {
-        Telegram.WebApp.openLink(url);
-      } catch (e) {
-        window.open(url, '_blank');
-      }
-    }
+	  // Aseguramos que la WebApp esté lista
+	  if (window.Telegram && window.Telegram.WebApp) {
+		
+		// Si es un enlace de Telegraph o de Telegram
+		if (url.includes('telegra.ph') || url.includes('t.me')) {
+		  // Intenta abrirlo mediante Instant View / Vista Instantánea de Telegram
+		  try {
+			Telegram.WebApp.openLink(url, { try_instant_view: true });
+		  } catch (e) {
+			// Fallback si la versión de Telegram es antigua
+			window.open(url, '_blank');
+		  }
+		} else {
+		  // Para PDFs y enlaces externos generales (GitHub Pages)
+		  try {
+			Telegram.WebApp.openLink(url);
+		  } catch (e) {
+			window.open(url, '_blank');
+		  }
+		}
 
-  } else {
-    // Fallback para pruebas en navegador Web desktop o fuera de Telegram
-    window.open(url, '_blank');
-  }
-}
+	  } else {
+		// Fallback para pruebas en navegador Web desktop o fuera de Telegram
+		window.open(url, '_blank');
+	  }
+	}
 
     function openModal(id) {
       document.getElementById(id).classList.remove('modal-hidden');
@@ -277,40 +354,75 @@
     }
 
     async function sendQuestion(event) {
-      event.preventDefault();
-      const btn = document.getElementById('submit-btn');
-      const status = document.getElementById('status-message');
-      
-      const sector = document.getElementById('user-sector').value;
-      const question = document.getElementById('user-question').value;
-      const user = Telegram.WebApp.initDataUnsafe?.user || {};
+	  event.preventDefault();
+	  const btn = document.getElementById('submit-btn');
+	  const status = document.getElementById('status-message');
+	  
+	  const sector = document.getElementById('user-sector').value;
+	  const question = document.getElementById('user-question').value;
+	  const user = Telegram.WebApp.initDataUnsafe?.user || {};
+	  
+	  if (!sector) {
+		alert("Por favor, ingresa tu nombre o sector en Chorrillos.");
+		document.getElementById('user-sector').focus();
+		return;
+	  }
 
-      btn.disabled = true;
-      btn.innerText = "Enviando...";
+	  if (!question) {
+		alert("Por favor, escribe tu pregunta o propuesta antes de enviar.");
+		document.getElementById('user-question').focus();
+		return;
+	  }
+	  
+	  if (sector.length > 100) {
+		sector = sector.slice(0, 100);
+	  }
 
-      // Reemplaza esta URL con el Webhook de tu n8n cuando esté listo
-      const WEBHOOK_URL = "https://tu-servidor-n8n.com/webhook/preguntas";
+	  if (question.length > 500) {
+		question = question.slice(0, 500);
+	  }
 
-      try {
-        await fetch(WEBHOOK_URL, {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({
-            telegram_id: user.id || "desconocido",
-            first_name: user.first_name || "",
-            sector: sector,
-            question: question,
-            timestamp: new Date().toISOString()
-          })
-        });
-      } catch (e) {
-        console.log("Simulación de envío (n8n no conectado aún)");
-      }
+	  btn.disabled = true;
+	  btn.innerText = "Enviando...";
 
-      btn.innerText = "Pregunta Enviada";
-      status.classList.remove('hidden');
-      setTimeout(() => { closeModal('modal-pregunta'); }, 2000);
-    }
+	  // Datos de tu Bot y el Chat ID de destino (Grupo interno o tu chat privado)
+	  const BOT_TOKEN = "8821715662:AAFcSirZsZdtahkXLN1w9G0f7NC5fRoJbZM";
+	  const CHAT_ID = "-1003916406391"; // E
+
+	  const text = `🎙️ *NUEVA PREGUNTA PARA EL STREAM*\n\n` +
+				   `👤 *Vecino/Sector:* ${sector}\n` +
+				   `💬 *Pregunta:* ${question}\n\n` +
+				   `📱 *Usuario Telegram:* @${user.username || 'sin_alias'} (${user.first_name || 'Anónimo'})`;
+
+	  try {
+		await fetch(`https://api.telegram.org/bot${BOT_TOKEN}/sendMessage`, {
+		  method: "POST",
+		  headers: { "Content-Type": "application/json" },
+		  body: JSON.stringify({
+			chat_id: CHAT_ID,
+			text: text,
+			parse_mode: "Markdown"
+		  })
+		});
+
+		btn.innerText = "Pregunta Enviada";
+		status.classList.remove('hidden');
+		
+		// Limpia el formulario y cierra el modal
+		document.getElementById('question-form').reset();
+		setTimeout(() => { 
+		  closeModal('modal-pregunta');
+		  btn.disabled = false;
+		  btn.innerText = "Enviar Pregunta a Kruger";
+		  status.classList.add('hidden');
+		}, 2000);
+
+	  } catch (e) {
+		alert("Ocurrió un error al enviar la pregunta. Inténtalo nuevamente.");
+		btn.disabled = false;
+		btn.innerText = "Enviar Pregunta a Kruger";
+	  }
+	}
   </script>
 </body>
 </html>
