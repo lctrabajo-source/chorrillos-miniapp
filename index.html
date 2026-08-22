@@ -358,10 +358,11 @@
 	  const btn = document.getElementById('submit-btn');
 	  const status = document.getElementById('status-message');
 	  
-	  const sector = document.getElementById('user-sector').value;
-	  const question = document.getElementById('user-question').value;
+	  // Limpieza de espacios y validación
+	  let sector = document.getElementById('user-sector').value.trim();
+	  let question = document.getElementById('user-question').value.trim();
 	  const user = Telegram.WebApp.initDataUnsafe?.user || {};
-	  
+
 	  if (!sector) {
 		alert("Por favor, ingresa tu nombre o sector en Chorrillos.");
 		document.getElementById('user-sector').focus();
@@ -373,29 +374,29 @@
 		document.getElementById('user-question').focus();
 		return;
 	  }
-	  
-	  if (sector.length > 100) {
-		sector = sector.slice(0, 100);
-	  }
 
-	  if (question.length > 500) {
-		question = question.slice(0, 500);
-	  }
+	  // Sanitización de límites
+	  if (sector.length > 100) sector = sector.slice(0, 100);
+	  if (question.length > 500) question = question.slice(0, 500);
+
+	  // Escapar o remover caracteres que rompen el Markdown de Telegram
+	  const cleanSector = sector.replace(/[*_`\[\]]/g, '');
+	  const cleanQuestion = question.replace(/[*_`\[\]]/g, '');
+	  const cleanFirstName = (user.first_name || 'Anónimo').replace(/[*_`\[\]]/g, '');
 
 	  btn.disabled = true;
 	  btn.innerText = "Enviando...";
 
-	  // Datos de tu Bot y el Chat ID de destino (Grupo interno o tu chat privado)
 	  const BOT_TOKEN = "8821715662:AAFcSirZsZdtahkXLN1w9G0f7NC5fRoJbZM";
-	  const CHAT_ID = "-1003916406391"; // E
+	  const CHAT_ID = "-1003916406391";
 
 	  const text = `🎙️ *NUEVA PREGUNTA PARA EL STREAM*\n\n` +
-				   `👤 *Vecino/Sector:* ${sector}\n` +
-				   `💬 *Pregunta:* ${question}\n\n` +
-				   `📱 *Usuario Telegram:* @${user.username || 'sin_alias'} (${user.first_name || 'Anónimo'})`;
+				   `👤 *Vecino/Sector:* ${cleanSector}\n` +
+				   `💬 *Pregunta:* ${cleanQuestion}\n\n` +
+				   `📱 *Usuario Telegram:* @${user.username || 'sin_alias'} (${cleanFirstName})`;
 
 	  try {
-		await fetch(`https://api.telegram.org/bot${BOT_TOKEN}/sendMessage`, {
+		const response = await fetch(`https://api.telegram.org/bot${BOT_TOKEN}/sendMessage`, {
 		  method: "POST",
 		  headers: { "Content-Type": "application/json" },
 		  body: JSON.stringify({
@@ -405,10 +406,13 @@
 		  })
 		});
 
+		if (!response.ok) {
+		  throw new Error(`Error HTTP: ${response.status}`);
+		}
+
 		btn.innerText = "Pregunta Enviada";
 		status.classList.remove('hidden');
 		
-		// Limpia el formulario y cierra el modal
 		document.getElementById('question-form').reset();
 		setTimeout(() => { 
 		  closeModal('modal-pregunta');
@@ -418,7 +422,7 @@
 		}, 2000);
 
 	  } catch (e) {
-		alert("Ocurrió un error al enviar la pregunta. Inténtalo nuevamente.");
+		alert("Ocurrió un error al enviar la pregunta. Verifica el Token y Chat ID.");
 		btn.disabled = false;
 		btn.innerText = "Enviar Pregunta a Kruger";
 	  }
