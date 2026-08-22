@@ -239,12 +239,32 @@
 
     // Función unificada para abrir links de Telegraph y PDFs fuera del WebView
     function openExternalLink(url) {
-      if (window.Telegram && window.Telegram.WebApp && window.Telegram.WebApp.openLink) {
+  // Aseguramos que la WebApp esté lista
+  if (window.Telegram && window.Telegram.WebApp) {
+    
+    // Si es un enlace de Telegraph o de Telegram
+    if (url.includes('telegra.ph') || url.includes('t.me')) {
+      // Intenta abrirlo mediante Instant View / Vista Instantánea de Telegram
+      try {
+        Telegram.WebApp.openLink(url, { try_instant_view: true });
+      } catch (e) {
+        // Fallback si la versión de Telegram es antigua
+        window.open(url, '_blank');
+      }
+    } else {
+      // Para PDFs y enlaces externos generales (GitHub Pages)
+      try {
         Telegram.WebApp.openLink(url);
-      } else {
+      } catch (e) {
         window.open(url, '_blank');
       }
     }
+
+  } else {
+    // Fallback para pruebas en navegador Web desktop o fuera de Telegram
+    window.open(url, '_blank');
+  }
+}
 
     function openModal(id) {
       document.getElementById(id).classList.remove('modal-hidden');
