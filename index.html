@@ -226,6 +226,14 @@
     Telegram.WebApp.ready();
     Telegram.WebApp.expand();
 
+    function openPDF(url) {
+      if (window.Telegram && window.Telegram.WebApp && window.Telegram.WebApp.openLink) {
+        Telegram.WebApp.openLink(url);
+      } else {
+        window.open(url, '_blank');
+      }
+    }
+
     function openModal(id) {
       document.getElementById(id).classList.remove('modal-hidden');
       document.getElementById(id).classList.add('modal-visible');
