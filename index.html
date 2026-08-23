@@ -397,90 +397,73 @@
     }
 
     async function sendQuestion(event) {
-	  event.preventDefault();
-	  const btn = document.getElementById('submit-btn');
-	  const status = document.getElementById('status-message');
-	  
-	  let sector = document.getElementById('user-sector').value.trim();
-	  let question = document.getElementById('user-question').value.trim();
-	  const user = Telegram.WebApp.initDataUnsafe?.user || {};
+  event.preventDefault();
+  const btn = document.getElementById('submit-btn');
+  const status = document.getElementById('status-message');
+  
+  let sector = document.getElementById('user-sector').value.trim();
+  let question = document.getElementById('user-question').value.trim();
+  const user = Telegram.WebApp.initDataUnsafe?.user || {};
 
-	  // Validaciones
-	  if (!sector) {
-		alert("Por favor, ingresa tu nombre o sector en Chorrillos.");
-		document.getElementById('user-sector').focus();
-		return;
-	  }
+  // Validaciones
+  if (!sector) {
+    alert("Por favor, ingresa tu nombre o sector en Chorrillos.");
+    document.getElementById('user-sector').focus();
+    return;
+  }
 
-	  if (!question) {
-		alert("Por favor, escribe tu pregunta o propuesta antes de enviar.");
-		document.getElementById('user-question').focus();
-		return;
-	  }
+  if (!question) {
+    alert("Por favor, escribe tu pregunta o propuesta antes de enviar.");
+    document.getElementById('user-question').focus();
+    return;
+  }
 
-	  // Sanitización de caracteres HTML para evitar inyecciones
-	  const escapeHTML = (str) => str.replace(/[&<">]/g, (tag) => ({
-		'&': '&amp;',
-		'<': '&lt;',
-		'>': '&gt;',
-		'"': '&quot;'
-	  }[tag] || tag));
+  btn.disabled = true;
+  btn.innerText = "Enviando...";
 
-	  const cleanSector = escapeHTML(sector.slice(0, 100));
-	  const cleanQuestion = escapeHTML(question.slice(0, 500));
-	  const cleanFirstName = escapeHTML(user.first_name || 'Anónimo');
+  // Cambia esta URL por la dirección real de tu Worker desplegado
+  const WORKER_URL = "https://telegram-proxy.luiscastilla-trabajo.workers.dev";
 
-	  btn.disabled = true;
-	  btn.innerText = "Enviando...";
+  try {
+    const response = await fetch(WORKER_URL, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        sector: sector,
+        question: question,
+        username: user.username || 'sin_alias',
+        firstName: user.first_name || 'Anónimo'
+      })
+    });
 
-	  const BOT_TOKEN = "8821715662:AAFcSirZsZdtahkXLN1w9G0f7NC5fRoJbZM";
-	  const CHAT_ID = "-1003916406391";
+    const result = await response.json();
 
-	  // Mensaje formateado en HTML estable
-	  const htmlMessage = `🎙️ <b>NUEVA PREGUNTA PARA EL STREAM</b>\n\n` +
-						  `👤 <b>Vecino/Sector:</b> ${cleanSector}\n` +
-						  `💬 <b>Pregunta:</b> ${cleanQuestion}\n\n` +
-						  `📱 <b>Usuario Telegram:</b> @${user.username || 'sin_alias'} (${cleanFirstName})`;
+    if (!response.ok) {
+      console.error("Error Worker API:", result);
+      alert(`Error: ${result.error || 'No se pudo enviar el mensaje'}`);
+      btn.disabled = false;
+      btn.innerText = "Enviar Pregunta a Kruger";
+      return;
+    }
 
-	  try {
-		const response = await fetch(`https://api.telegram.org/bot${BOT_TOKEN}/sendMessage`, {
-		  method: "POST",
-		  headers: { "Content-Type": "application/json" },
-		  body: JSON.stringify({
-			chat_id: CHAT_ID,
-			text: htmlMessage,
-			parse_mode: "HTML"
-		  })
-		});
+    btn.innerText = "Pregunta Enviada";
+    status.classList.remove('hidden');
+    
+    document.getElementById('question-form').reset();
+    setTimeout(() => { 
+      closeModal('modal-pregunta');
+      btn.disabled = false;
+      btn.innerText = "Enviar Pregunta a Kruger";
+      status.classList.add('hidden');
+    }, 2000);
 
-		const result = await response.json();
-
-		if (!response.ok) {
-		  console.error("Error Telegram API:", result);
-		  alert(`Error ${result.error_code}: ${result.description}`);
-		  btn.disabled = false;
-		  btn.innerText = "Enviar Pregunta a Kruger";
-		  return;
-		}
-
-		btn.innerText = "Pregunta Enviada";
-		status.classList.remove('hidden');
-		
-		document.getElementById('question-form').reset();
-		setTimeout(() => { 
-		  closeModal('modal-pregunta');
-		  btn.disabled = false;
-		  btn.innerText = "Enviar Pregunta a Kruger";
-		  status.classList.add('hidden');
-		}, 2000);
-
-	  } catch (e) {
-		console.error("Error Fetch:", e);
-		alert("Error de red al intentar conectar con la API de Telegram.");
-		btn.disabled = false;
-		btn.innerText = "Enviar Pregunta a Kruger";
-	  }
-	}
+  } catch (e) {
+    console.error("Error Fetch:", e);
+    alert("Error de red al intentar conectar con el servidor.");
+    btn.disabled = false;
+    btn.innerText = "Enviar Pregunta a Kruger";
+  }
+}
   </script>
 </body>
 </html>
